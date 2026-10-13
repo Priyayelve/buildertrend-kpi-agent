@@ -135,6 +135,15 @@ export default function Home() {
 
         <div className="mt-8 rounded-3xl border border-slate-800 bg-slate-900 p-8 shadow-2xl">
           <h2 className="mb-6 text-3xl font-bold">Monday Automation Workflow</h2>
+          <div className="mt-8 rounded-3xl border border-slate-800 bg-slate-900 p-8 shadow-2xl">
+  <h2 className="mb-6 text-3xl font-bold">Automation Flowchart</h2>
+
+  <div className="overflow-x-auto">
+    <div className="min-w-[900px]">
+      <FlowChart />
+    </div>
+  </div>
+</div>
 
           <div className="space-y-4">
             {workflowSteps.map((step) => (
