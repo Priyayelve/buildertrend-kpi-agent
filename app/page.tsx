@@ -101,6 +101,16 @@ export default function Home() {
             Google Sheets, and the company KPI tracker.
           </p>
 
+          <p className="mt-4 max-w-3xl text-base text-slate-400">
+            This is not a hard-coded copy and paste script. It is an agent-based
+            workflow that collects, validates, updates, and flags data using
+            automation rules plus human review.
+          </p>
+
+          <p className="mt-4 text-sm font-semibold text-blue-300">
+            Prepared by Priya Yelve
+          </p>
+
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             <SummaryCard
               title="Problem"
@@ -135,15 +145,6 @@ export default function Home() {
 
         <div className="mt-8 rounded-3xl border border-slate-800 bg-slate-900 p-8 shadow-2xl">
           <h2 className="mb-6 text-3xl font-bold">Monday Automation Workflow</h2>
-          <div className="mt-8 rounded-3xl border border-slate-800 bg-slate-900 p-8 shadow-2xl">
-  <h2 className="mb-6 text-3xl font-bold">Automation Flowchart</h2>
-
-  <div className="overflow-x-auto">
-    <div className="min-w-[900px]">
-      <FlowChart />
-    </div>
-  </div>
-</div>
 
           <div className="space-y-4">
             {workflowSteps.map((step) => (
@@ -154,6 +155,22 @@ export default function Home() {
                 description={step.description}
               />
             ))}
+          </div>
+        </div>
+
+        <div className="mt-8 rounded-3xl border border-slate-800 bg-slate-900 p-8 shadow-2xl">
+          <h2 className="mb-6 text-3xl font-bold">Automation Flowchart</h2>
+
+          <p className="mb-6 max-w-3xl text-slate-300">
+            This flowchart shows how the agentic workflow moves from scheduled
+            data collection to validation, KPI updates, human review, and final
+            notification.
+          </p>
+
+          <div className="overflow-x-auto">
+            <div className="min-w-[900px]">
+              <FlowChart />
+            </div>
           </div>
         </div>
 
@@ -291,6 +308,109 @@ function AgentCard({ title, text }: { title: string; text: string }) {
     <div className="rounded-2xl border border-slate-700 bg-slate-800 p-5">
       <h3 className="mb-2 text-lg font-bold text-white">{title}</h3>
       <p className="text-sm text-slate-300">{text}</p>
+    </div>
+  );
+}
+
+function FlowChart() {
+  return (
+    <div className="space-y-6 rounded-3xl border border-slate-800 bg-slate-950 p-6">
+      <div className="flex items-center justify-center">
+        <FlowBox text="Scheduled Monday Trigger" />
+      </div>
+
+      <FlowArrow />
+
+      <div className="flex items-center justify-center">
+        <FlowBox text="Data Collection Agent" />
+      </div>
+
+      <FlowArrow />
+
+      <div className="grid grid-cols-2 gap-6">
+        <FlowBox text="Pull Buildertrend Data" />
+        <FlowBox text="Pull Google Sheets Data" />
+      </div>
+
+      <FlowArrow />
+
+      <div className="flex items-center justify-center">
+        <FlowBox text="Data Cleaning Agent" />
+      </div>
+
+      <FlowArrow />
+
+      <div className="flex items-center justify-center">
+        <FlowBox text="Standardize Names, Dates, Cost Codes, Missing Values, and Number Formats" />
+      </div>
+
+      <FlowArrow />
+
+      <div className="flex items-center justify-center">
+        <FlowBox text="Data Mapping Agent" />
+      </div>
+
+      <FlowArrow />
+
+      <div className="flex items-center justify-center">
+        <FlowBox text="Match Source Fields to KPI Tracker Columns" />
+      </div>
+
+      <FlowArrow />
+
+      <div className="flex items-center justify-center">
+        <DecisionBox text="Do numbers pass validation?" />
+      </div>
+
+      <div className="grid grid-cols-2 gap-8 pt-4">
+        <div className="space-y-4 rounded-2xl border border-green-500/30 bg-green-500/10 p-5">
+          <p className="text-center font-bold text-green-400">YES</p>
+          <FlowBox text="KPI Update Agent" />
+          <FlowArrow />
+          <FlowBox text="Update KPI Tracker in Google Sheets" />
+          <FlowArrow />
+          <FlowBox text="Notification Agent" />
+          <FlowArrow />
+          <FlowBox text="Send Summary to Project Manager" />
+        </div>
+
+        <div className="space-y-4 rounded-2xl border border-yellow-500/30 bg-yellow-500/10 p-5">
+          <p className="text-center font-bold text-yellow-400">NO</p>
+          <FlowBox text="Human Review Step" />
+          <FlowArrow />
+          <FlowBox text="Pause Rows With Mismatches" />
+          <FlowArrow />
+          <FlowBox text="Send Issues for Review" />
+          <FlowArrow />
+          <FlowBox text="Notification Agent Sends Review Summary" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function FlowBox({ text }: { text: string }) {
+  return (
+    <div className="rounded-2xl border border-slate-700 bg-slate-800 px-5 py-4 text-center text-sm font-semibold text-slate-100 shadow-lg">
+      {text}
+    </div>
+  );
+}
+
+function DecisionBox({ text }: { text: string }) {
+  return (
+    <div className="mx-auto flex h-36 w-36 rotate-45 items-center justify-center border border-blue-500 bg-blue-600 shadow-lg">
+      <div className="-rotate-45 px-2 text-center text-xs font-bold text-white">
+        {text}
+      </div>
+    </div>
+  );
+}
+
+function FlowArrow() {
+  return (
+    <div className="flex justify-center text-2xl font-bold text-blue-400">
+      ↓
     </div>
   );
 }
