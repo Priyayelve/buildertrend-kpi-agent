@@ -1,9 +1,9 @@
 const workflowSteps = [
   {
     number: 1,
-    title: "Scheduled Trigger",
+    title: "Scheduled Monday Trigger",
     description:
-      "The automation runs every Monday morning before the weekly meeting.",
+      "The workflow runs automatically every Monday morning before the project meeting.",
   },
   {
     number: 2,
@@ -21,7 +21,7 @@ const workflowSteps = [
     number: 4,
     title: "Data Mapping Agent",
     description:
-      "Matches source fields from Buildertrend and Google Sheets to the correct KPI tracker fields.",
+      "Maps Buildertrend and spreadsheet fields to the correct KPI tracker columns.",
   },
   {
     number: 5,
@@ -33,19 +33,19 @@ const workflowSteps = [
     number: 6,
     title: "KPI Update Agent",
     description:
-      "Updates the KPI tracker automatically only when the numbers pass validation.",
+      "Updates the KPI tracker only after the numbers pass validation rules.",
   },
   {
     number: 7,
     title: "Human Review Step",
     description:
-      "If mismatches are found, the workflow pauses those rows and sends them for review.",
+      "If mismatches are found, those rows are paused and sent for human review.",
   },
   {
     number: 8,
     title: "Notification Agent",
     description:
-      "Sends a summary to the project manager showing what was updated and what needs review.",
+      "Sends a summary to the project manager showing updates, issues, and review items.",
   },
 ];
 
@@ -56,6 +56,30 @@ const validationChecks = [
   "Invalid cost codes",
   "Buildertrend and Google Sheets mismatches",
   "Large changes from the previous week",
+];
+
+const techStack = [
+  "Next.js",
+  "Google Sheets API",
+  "Buildertrend API or scheduled exports",
+  "OpenAI / Claude / open-source LLM",
+  "Zapier, Make, or n8n",
+  "Slack or email notifications",
+];
+
+const metrics = [
+  {
+    label: "Manual Work Reduced",
+    value: "10 hrs/week",
+  },
+  {
+    label: "Automation Schedule",
+    value: "Every Monday",
+  },
+  {
+    label: "Review Control",
+    value: "Human-in-the-loop",
+  },
 ];
 
 export default function Home() {
@@ -88,9 +112,25 @@ export default function Home() {
             />
             <SummaryCard
               title="Result"
-              text="The KPI tracker is updated faster, with fewer mistakes and a review step for mismatches."
+              text="The KPI tracker is updated faster with fewer mistakes and a review step for mismatches."
             />
           </div>
+        </div>
+
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
+          {metrics.map((metric) => (
+            <div
+              key={metric.label}
+              className="rounded-2xl border border-slate-800 bg-slate-900 p-6 shadow-xl"
+            >
+              <p className="text-sm uppercase tracking-wide text-slate-400">
+                {metric.label}
+              </p>
+              <p className="mt-2 text-2xl font-bold text-blue-400">
+                {metric.value}
+              </p>
+            </div>
+          ))}
         </div>
 
         <div className="mt-8 rounded-3xl border border-slate-800 bg-slate-900 p-8 shadow-2xl">
@@ -110,7 +150,7 @@ export default function Home() {
 
         <div className="mt-8 grid gap-8 md:grid-cols-2">
           <div className="rounded-3xl border border-slate-800 bg-slate-900 p-8 shadow-2xl">
-            <h2 className="mb-4 text-3xl font-bold">How It Works xxxxxxxxxxxxxxxxxxxx</h2>
+            <h2 className="mb-4 text-3xl font-bold">How It Works</h2>
 
             <ol className="list-decimal space-y-3 pl-6 text-slate-300">
               <li>The workflow starts every Monday morning on a schedule.</li>
@@ -161,6 +201,33 @@ export default function Home() {
               text="Sends a clear summary to the project manager before the meeting."
             />
           </div>
+        </div>
+
+        <div className="mt-8 rounded-3xl border border-slate-800 bg-slate-900 p-8 shadow-2xl">
+          <h2 className="mb-4 text-3xl font-bold">Suggested Tech Stack</h2>
+
+          <div className="grid gap-3 md:grid-cols-2">
+            {techStack.map((tool) => (
+              <div
+                key={tool}
+                className="rounded-xl border border-slate-700 bg-slate-800 p-4 text-slate-200"
+              >
+                🔧 {tool}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-8 rounded-3xl border border-yellow-500/40 bg-yellow-500/10 p-8 shadow-2xl">
+          <h2 className="mb-3 text-3xl font-bold text-yellow-300">
+            Important Safety Rule
+          </h2>
+
+          <p className="text-lg text-yellow-50">
+            The AI agent should not blindly overwrite financial numbers. Clean
+            data can be updated automatically, but mismatched or unusual numbers
+            should be paused for human review before they enter the KPI tracker.
+          </p>
         </div>
 
         <div className="mt-8 rounded-3xl bg-blue-600 p-8 shadow-2xl">
