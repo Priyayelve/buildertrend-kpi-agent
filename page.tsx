@@ -110,7 +110,7 @@ export default function Home() {
 
         <div className="mt-8 grid gap-8 md:grid-cols-2">
           <div className="rounded-3xl border border-slate-800 bg-slate-900 p-8 shadow-2xl">
-            <h2 className="mb-4 text-3xl font-bold">How It Works</h2>
+            <h2 className="mb-4 text-3xl font-bold">How It Works xxxxxxxxxxxxxxxxxxxx</h2>
 
             <ol className="list-decimal space-y-3 pl-6 text-slate-300">
               <li>The workflow starts every Monday morning on a schedule.</li>
